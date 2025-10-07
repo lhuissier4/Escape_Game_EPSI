@@ -1,5 +1,5 @@
 
-
+import { Link } from "react-router-dom";
 import UserDropdown from "./UserDropdown.js";
 interface Props {
     username:string
@@ -13,7 +13,9 @@ function Header(props: Props) {
 
     return (
         <header className="header">
-            <img className="icon" src="raw.png" alt="Icon Jeux"/>
+            <Link to="/home">
+            <img className="icon icon_redirect" src="raw.png" alt="Icon Jeux"/>
+            </Link>
             <h1>Escape Game EPSI</h1>
 
             <UserDropdown isConnected={props.isConnected} username={props.username} picture={props.picture}/>

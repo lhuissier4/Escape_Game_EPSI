@@ -24,7 +24,7 @@ function Login(): JSX.Element {
 
     const navigate = useNavigate();
     const redirectToCreateAccount = () => {
-        navigate("/create-account"); // ✅ navigation au clic
+        navigate("/create-account");
     };
 
     function GetToken() {
