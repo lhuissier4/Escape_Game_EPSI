@@ -1,0 +1,414 @@
+
+
+/*html, body {
+  margin: 0;
+  height: 100%;
+}
+
+.main_container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}*/
+button{
+    font-size: 18px;
+}
+/* ### Debut header ###*/
+
+.header {
+    display: flex;
+    align-items: center;  /* Centre les éléments verticalement */
+    justify-content: space-between; /* Espacement entre l'icône, le titre et l'image utilisateur */
+    border-bottom: black solid 1px;
+    margin-bottom: 0px;
+    padding: 0px 0px 0px 10px;
+    text-align: center;
+}
+
+
+/* Style pour l'icône à gauche */
+.header .icon {
+    width: 70px;
+    height: 70px;
+    padding: 5px;
+    /*border-right: black solid 1px;*/
+    padding-right: 2%;
+}
+
+/* Style du titre */
+.header h1 {
+    flex: 1; /* Permet au titre de prendre l’espace disponible */
+    text-align: center;
+    margin: 0; /* Supprime la marge par défaut */
+    font-size: 50px;
+
+}
+
+.header div {
+    display: flex;
+    align-items: center;
+    text-align: start;
+}
+.user-area {
+    display: flex;
+    border-left: black solid 1px;
+    padding-left: 1%;
+;
+
+}
+.user-clickable{
+    padding-left: 15px;
+    padding-right: 10px
+}
+.user-clickable:hover {
+    background-color: #ddd;
+    cursor: pointer;
+
+}
+
+.imguser {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #ddd;
+    margin-left: auto;
+    margin-right: 5px;
+}
+.header>span{
+    text-align: start;
+}
+header p{
+    flex-direction: column; /* Place les éléments en colonne */
+    font-size: 23px;
+    margin: 0px;
+}
+.status-connection{
+    color: #c0c0c0;
+}
+/* ### debut ListOfPages ### */
+.pages-container {
+    width: 330px;
+    margin-top: 20px;
+    align-items: center;
+    text-align: center;
+    border-right: black solid 1px;
+    padding-right: 10px;
+    min-height: 100%; /*hauteur de la page à changer*/
+
+}
+.pages-container ul{
+    border-top: black solid 1px;
+    list-style: none;
+    padding-top: 50px;
+    padding-left: 0px;
+}
+.pages-container li{
+    padding: 10px;
+    font-size: 20px;
+    border: black solid 1px;
+    margin: 0px 10px 10px 10px;
+    text-align: center;
+    box-shadow: 0.2px 4px 5px rgba(0, 0, 0, 0.3);
+}
+.pages-container li:hover{
+    background-color: #ddd;
+    cursor: pointer;
+}
+.pages-container .li-item {
+    cursor: pointer;
+    padding: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.pages-container .li-item.active {
+    background-color: #abd1fc;
+}
+.pages-container .li-item.active:hover {
+    background-color: #abd1fc; /* #2669aa Aucune modification au hover */
+}
+.App {
+    display: flex;
+}
+
+
+/* ### Page Accueil ### */
+.accueil {
+    flex: 1;
+}
+.accueil h1 {
+    align-items: center;
+    text-align: center;
+}
+.accueil img{
+    width: 50%;
+    max-width: 320px;
+}
+/*### Début TypeOfFolder ###*/
+.TypeOfFolder {
+    flex: 1;
+    text-align: center;
+    align-items: center;
+
+}
+.TypeOfFolder ul{
+    list-style: none;
+    padding-top: 51px;
+    padding-left: 0px;
+    flex:1;
+}
+.TypeOfFolder li{
+    padding: 20px;
+    font-size: 20px;
+    border: black solid 1px;
+    margin: 0px 10% 20px 10%;
+    text-align: center;
+    border-radius: 15px;
+    background: #fcc2c2;
+    min-width: 300px;
+}
+.TypeOfFolder li:hover{
+    filter: brightness(85%);
+}
+/* ### Debut recover-folder ###*/
+.recover-folder{
+    flex: 1;
+}
+.recover-folder h1{
+    text-align: center;
+    margin-bottom: 20px;
+}
+.recover-folder h2{
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.form{
+    display: inline-grid;
+    margin: 20px;
+    flex:1;
+
+}
+
+.form button{
+    margin-top: 10px;
+    padding: 6px;
+    border-radius: 10px;
+    border-color: #efeef4;
+    border-style: solid;
+    background: #1a73e8;
+    color: white;
+}
+.button_search{
+    width: 150px;
+}
+
+.form button:hover{
+    filter: brightness(85%);
+    cursor: pointer;
+}
+.search-all-block{
+    flex:1;
+    flex-wrap: wrap;
+    gap: 10px 50px;
+    align-items: flex-start;
+}
+.login{
+    flex-direction: column;
+}
+.flex{
+    display: flex;
+}
+.block{
+    display: block;
+}
+
+.search-all-block input{
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    min-width: 300px;
+    border-color: #efeef4;
+    border-style: solid;
+    background: #f9f9fd;
+    padding: 5px;
+    font-size: 20px;
+
+}
+.search-all-block input.valid {
+    color: #000000;
+    border-color: #efeef4;
+}
+
+.search-all-block input.error {
+    color: #ff4400;
+    border-color: #ff4400;
+}
+
+.search-all-block input,
+.search-all-block select {
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    min-width: 300px;
+    border-color: #efeef4;
+    border-style: solid;
+    background: #f9f9fd;
+    padding: 5px;
+    font-size: 20px;
+    box-sizing: border-box; /* essentiel */
+}
+
+/* Appliqué à tous les labels, y compris error_login_message */
+.search-all-block label {
+    display: flex;
+    flex-direction: column;
+
+    box-sizing: border-box;
+    max-width: 300px;
+    word-break: break-word;
+    font-size: 20px;
+}
+
+
+
+
+
+.title {
+    display: flex;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    background: #c9fcda;
+    border-bottom: black solid 1px;
+    /* alignement vertical centré */
+    justify-content: space-between; /* texte à gauche, bouton à droite */
+    align-items: stretch;
+
+}
+
+.title a {
+    margin-left: 20px;
+    font-size: 20px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.title button {
+    background: #c9fcda;
+    border-top-right-radius: 25px;
+    border-color: transparent;
+    text-align: center;
+    border-left: black solid 1px;
+    max-width: 300px;
+    flex-grow: 1;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.title button:hover{
+    cursor: pointer;
+    filter: brightness(85%);
+}
+
+
+.icon {
+    width: 20px; /* Ajuste la taille de l'icône */
+    height: 20px;
+}
+
+.index{
+    max-width: 20px;
+}
+
+/*@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+*/
+
+
+.login_container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.login_box {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    background-color: white;
+}
+
+.login_box h1{
+    text-align: center;
+}
+.search-all-block label.error_login_message {
+    color: red;
+    font-size: small;
+
+}
+
+.password-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+}
+
+
+/* Champ de mot de passe */
+.password-input input {
+    flex: 1;
+    border-radius: 8px;
+    background: #f9f9fd;
+    border: 1.6px solid #efeef4;
+    padding-right: 40px; /* <-- Ajout important */
+}
+.form button.overlay-button {
+    position: absolute;
+    top: 50%;                         /* Positionné à la moitié de la hauteur du conteneur */
+    transform: translateY(-50%);      /* Correction pour un centrage parfait */
+    right: 10px;
+    background: #f9f9fd;
+    border: 1.6px solid #efeef4;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 6px 8px;
+    margin-right: -11px;
+    margin-top: -2px;
+}
+
+
+.form button.overlay-button:hover {
+    filter: brightness(85%);
+}
+
+
+.PageNotFound h1{
+    text-align: center;
+}
+.PageNotFound p{
+    margin-top: 40px;
+    font-size: 20px;
+}
+
+
+
+
+
+/* Supprime les styles par défaut s'il y a une flèche */
+.dropdown-toggle::after {
+    display: none !important;
+}
