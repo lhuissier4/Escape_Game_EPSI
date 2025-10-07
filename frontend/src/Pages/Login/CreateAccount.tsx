@@ -18,7 +18,7 @@ const CreateAccountPage = (): JSX.Element => {
     const [isLoading, setIsLoading] = useState(false);
     const [serverError, setServerError] = useState(null);
     const navigate = useNavigate();
-    
+
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const selectedFile = e.target.files?.[0] || null;
         setFile(selectedFile);
@@ -46,9 +46,11 @@ const CreateAccountPage = (): JSX.Element => {
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             formData.append("email", emailRef.current?.value );
-
+            let img = false
             if (file) {
+
                 formData.append("picture", file);
+                img = true;
             }
             setIsLoading(true);
             try {
@@ -62,8 +64,8 @@ const CreateAccountPage = (): JSX.Element => {
                 }
 
                 const data = await res.json();
-                alert(`Création de compte réussi: ${data.picture_url || "aucune image"}`);
-                navigate("/login");
+                alert(`Création de compte réussi : ${img ? "image sélectionnée" : "aucune image"}`);
+                //navigate("/login");
             } catch (err: any) {
                 alert(err.message);
             } finally
