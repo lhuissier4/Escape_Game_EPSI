@@ -1,6 +1,7 @@
 import {type JSX, useEffect, useRef, useState} from "react";
 import DivSelectionWithEnter from "../components/DivSelectionWithEnter.tsx";
 import {Button} from "react-bootstrap";
+import {redirect, useNavigate} from "react-router-dom";
 
 const CreateAccountPage = (): JSX.Element => {
     const usernameRef = useRef<HTMLInputElement>(null);
@@ -16,7 +17,8 @@ const CreateAccountPage = (): JSX.Element => {
     const [apiDatas, setApiDatas] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [serverError, setServerError] = useState(null);
-
+    const navigate = useNavigate();
+    
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const selectedFile = e.target.files?.[0] || null;
         setFile(selectedFile);
@@ -60,9 +62,10 @@ const CreateAccountPage = (): JSX.Element => {
                 }
 
                 const data = await res.json();
-                    console.log(`Téléversement réussi: ${data.picture_url || "aucune image"}`);
+                alert(`Création de compte réussi: ${data.picture_url || "aucune image"}`);
+                navigate("/login");
             } catch (err: any) {
-                console.log(err.message);
+                alert(err.message);
             } finally
             {
                 setIsLoading(false);
