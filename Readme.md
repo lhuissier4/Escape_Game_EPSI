@@ -20,11 +20,12 @@ firstname: str = Form(...),
 email: str = Form(...),
 picture: Optional[UploadFile] = File(None),
 ```
-- POST /join-game
+- POST /join-game  
 Permet de vérifier que le code entré correspond à une partie existante et renvoie un http:200
 param: gamecode:str
 
-- GET /generate-code
+
+- GET /generate-code  
 Genère un nouveau code de jeux (pour une nouvelle partie)
 return : {"gamecode":26579}
 
