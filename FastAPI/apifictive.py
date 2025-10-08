@@ -74,8 +74,9 @@ def generate_game():
 
 @app.get("/verify-validity-of-code")
 def verify_code(gamecode:str ):
-    if (gamecode != ""):
-        return {"status": "ok"}
+    if (gamecode != "" ):
+        if (gamecode != "2"):
+            return {"status": "ok"}
         raise HTTPException(
                 status_code=400,
                 detail=f"Veillez entrer un code valide"
