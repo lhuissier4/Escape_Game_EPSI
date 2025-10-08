@@ -7,6 +7,8 @@ import Cookies from "js-cookie";
 import {useState} from "react";
 import PageNotFound from "./Pages/PageNotFound.tsx";
 import CreateAccount from "./Pages/Login/CreateAccount.tsx";
+import Home from "./Pages/Home.tsx";
+import CreateCode from "./Pages/Login/CreateCode.tsx";
 
 function App() {
     const [isConnected, setIsConnected] = useState(false);
@@ -29,9 +31,10 @@ function App() {
                 ) : (
 
                     <Routes>
-                        <Route path="/login" element={<Navigate to={"/home"}/>} />
+                        <Route path="/login" element={<Navigate to={"/create-code"}/>} />
                         <Route path="/" element={<Navigate to={"/home"}/>} />
-                        <Route path="/home" element={<h1>Page Home</h1>} />
+                        <Route path="/home" element={<Home/>} />
+                        <Route path="/create-code" element={<CreateCode/>}/>
                         <Route path="*" element={<PageNotFound homepage={"/home"}/>} />
                     </Routes>
 

@@ -65,7 +65,7 @@ const CreateAccountPage = (): JSX.Element => {
 
                 const data = await res.json();
                 alert(`Création de compte réussi : ${img ? "image sélectionnée" : "aucune image"}`);
-                //navigate("/login");
+                navigate("/login");
             } catch (err: any) {
                 alert(err.message);
             } finally
