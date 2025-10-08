@@ -11,6 +11,7 @@ const CreateAccountPage = (): JSX.Element => {
     const [apiDatas, setApiDatas] = useState<apiDatasFetched[]>(null);
     const [isLoading, setIsLoading] = useState(false);
     const [serverError, setServerError] = useState(null);
+    const [is_valid_code, setIsValidCode] = useState(true);
     const navigate = useNavigate();
     function generateCode() {
         setIsLoading(true);
@@ -43,8 +44,57 @@ const CreateAccountPage = (): JSX.Element => {
                 setIsLoading(false);
             });
     }
+
+    useEffect(() => {
+        // Exemple : reset à chaque ouverture du composant
+        if (codeRef.current) {
+            codeRef.current.value = "";
+        }
+    }, []);
+
     function joinGame() {
-        let jsondatas = {
+        const value = codeRef.current?.value?.trim(); // retire les espaces
+
+        console.log("codeRef.current?.value =", value);
+
+        // Vérifie si la valeur est un entier
+        if (value && /^\d+$/.test(value)) {
+            setIsValidCode(true);
+            navigate("/game/"+value);
+        } else {
+            setIsValidCode(false);
+        }
+    }
+
+    return (
+        <div className="login_container">
+            <div className="login_box">
+                <h1>Rejoindre une partie</h1>
+                <div className="form">
+                    <button onClick={generateCode} style={{fontSize:"20px"}}>Générer un code</button>
+                    <br/>
+                    <br/>
+                    <div className="search-all-block flex login">
+                        <DivSelectionWithEnter onEnter={joinGame} >
+                            <label htmlFor="codeNumber">Entrer un code :
+                                <input name="codeNumber" ref={codeRef} type="number" placeholder="Ex: 265899"/>
+                                {!is_valid_code &&
+                                    <label className="error_login_message">Un code valide doit être entré</label>
+                                }
+                                <button onClick={joinGame}>Rejoindre une partie</button>
+                            </label>
+
+                        </DivSelectionWithEnter>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default CreateAccountPage;
+/*
+ let jsondatas = {
             "gamecode": codeRef.current?.value
         }
         console.log("jsondatas", JSON.stringify(jsondatas));
@@ -84,28 +134,4 @@ const CreateAccountPage = (): JSX.Element => {
             .finally(() => {
                 setIsLoading(false);
             });
-    }
-
-    return (
-        <div className="login_container">
-            <div className="login_box">
-                <h1>Rejoindre une partie</h1>
-                <div className="form">
-                    <button onClick={generateCode} style={{fontSize:"20px"}}>Générer un code</button>
-                    <br/>
-                    <br/>
-                    <div className="search-all-block flex login">
-                        <DivSelectionWithEnter onEnter={joinGame}>
-                            <label htmlFor="codeNumber">Entrer un code :
-                                <input name="codeNumber" ref={codeRef} type="number" placeholder="Ex: 265899"/>
-                                <button onClick={joinGame}>Rejoindre une partie</button>
-                            </label>
-                        </DivSelectionWithEnter>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
-};
-
-export default CreateAccountPage;
+ */
