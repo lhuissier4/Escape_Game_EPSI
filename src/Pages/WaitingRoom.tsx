@@ -1,5 +1,6 @@
 import {type JSX, useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
+import Cookies from "js-cookie";
 
 const WaitingRoom = (): JSX.Element => {
     const { id } = useParams()
@@ -14,14 +15,15 @@ const WaitingRoom = (): JSX.Element => {
     useEffect(() => {
         // Exécuté une seule fois au montage du composant
         setIsLoading(true);
-
+        localStorage.removeItem("session_id")
         // Corps JSON attendu par le backend
         const payload = { gamecode: id };
-
+        const token = Cookies.get("token");
         fetch("/api/games/join-game", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}` // on envoie le JWT
             },
             body: JSON.stringify(payload),
         })
@@ -33,6 +35,7 @@ const WaitingRoom = (): JSX.Element => {
                 }
                 const result = await response.json();
                 console.log("Réponse join-game :", result);
+                localStorage.setItem("session_id", result.session_id);
                 setApiData(result);
                 setApiError(null);
             })
@@ -49,6 +52,10 @@ const WaitingRoom = (): JSX.Element => {
         navigate("/create-code")
     }
     function LaunchGame(){
+        for (let i = 1; i <= 4; i++) {
+            localStorage.removeItem(`mystery_solved_${i}`);
+
+        }
         navigate("/game/environment/"+id+"/play")
     }
     return (

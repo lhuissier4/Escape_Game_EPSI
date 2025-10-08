@@ -1,7 +1,6 @@
 import {useNavigate, useParams} from "react-router-dom";
 import { useState } from "react";
 import type { JSX } from "react";
-
 // Structure d'une énigme
 interface Question {
     image: string;
@@ -75,31 +74,32 @@ function Mystery(): JSX.Element {
         }
 
         const isCorrect = selected === current.correct;
-
         if (isCorrect) {
             console.log("Bonne réponse !");
             setIsFinished(true);
             const solvedKey = `mystery_solved_${id_mystery}`;
             localStorage.setItem(solvedKey, "true");
             try {
-                // Envoi du score au serveur
                 const response = await fetch("/api/scores", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify({
-                        id_mystery, // rajouter id joueur
-                        score,
+                        session_id: id_mystery, // identifiant de la session en cours
+                        value: score,                 // le score à ajouter
                     }),
                 });
 
                 if (!response.ok) {
-                    throw new Error(`Erreur du serveur : ${response.status}`);
+                    const errData = await response.json().catch(() => ({}));
+                    throw new Error(errData.error || `Erreur du serveur : ${response.status}`);
                 }
 
-                console.log("Score envoyé au serveur :", score);
-                alert(`Bonne réponse ! Score final : ${score} points`);
+                const result = await response.json();
+                localStorage.setItem("session_id",result.session_id)
+                console.log("Score mis à jour :", result);
+                alert(`Bonne réponse ! Score total : ${result.new_value || score} points`);
             } catch (error) {
                 console.error("Erreur lors de l’envoi du score :", error);
             }
