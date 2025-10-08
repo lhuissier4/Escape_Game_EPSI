@@ -3,11 +3,15 @@ import DivSelectionWithEnter from "../components/DivSelectionWithEnter.tsx";
 import {Button} from "react-bootstrap";
 import {redirect, useNavigate} from "react-router-dom";
 
+interface apiDatasFetched {
+    gamecode: number;
+}
 const CreateAccountPage = (): JSX.Element => {
     const codeRef = useRef<HTMLInputElement>(null);
-    const [apiDatas, setApiDatas] = useState<null>(null);
+    const [apiDatas, setApiDatas] = useState<apiDatasFetched[]>(null);
     const [isLoading, setIsLoading] = useState(false);
     const [serverError, setServerError] = useState(null);
+    const navigate = useNavigate();
     function generateCode() {
         setIsLoading(true);
 
@@ -27,9 +31,9 @@ const CreateAccountPage = (): JSX.Element => {
                 if (!data) {
                     throw new Error("Les données reçues sont vides");
                 }
-
                 setApiDatas(data);
                 setServerError(null);
+                navigate("/game/"+data.gamecode);
             })
             .catch((error) => {
                 console.error("Erreur fetch:", error);

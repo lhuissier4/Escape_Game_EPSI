@@ -279,44 +279,6 @@ header p{
 
 
 
-.title {
-    display: flex;
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
-    background: #c9fcda;
-    border-bottom: black solid 1px;
-    /* alignement vertical centré */
-    justify-content: space-between; /* texte à gauche, bouton à droite */
-    align-items: stretch;
-
-}
-
-.title a {
-    margin-left: 20px;
-    font-size: 20px;
-    padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
-.title button {
-    background: #c9fcda;
-    border-top-right-radius: 25px;
-    border-color: transparent;
-    text-align: center;
-    border-left: black solid 1px;
-    max-width: 300px;
-    flex-grow: 1;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
-.title button:hover{
-    cursor: pointer;
-    filter: brightness(85%);
-}
-
-
 .icon {
     width: 20px; /* Ajuste la taille de l'icône */
     height: 20px;
@@ -414,4 +376,39 @@ header p{
 /* Supprime les styles par défaut s'il y a une flèche */
 .dropdown-toggle::after {
     display: none !important;
+}
+
+
+/* container (sous le header)*/
+.defaultPage {
+    flex: 1;
+    justify-content: center; /* centre horizontalement */
+    align-items: center;
+}
+.title {
+    margin-top: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.sizedPage {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+.txt-style{
+    font-size: 18px;
+}
+.button-style{
+    margin-top: 10px;
+    padding: 6px;
+    border-radius: 10px;
+    border-color: #efeef4;
+    border-style: solid;
+    background: #1a73e8;
+    color: white;
+}
+.txt-align-center{
+    text-align: center;
 }

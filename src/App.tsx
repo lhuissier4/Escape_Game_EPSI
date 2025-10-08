@@ -9,6 +9,7 @@ import PageNotFound from "./Pages/PageNotFound.tsx";
 import CreateAccount from "./Pages/Login/CreateAccount.tsx";
 import Home from "./Pages/Home.tsx";
 import CreateCode from "./Pages/Login/CreateCode.tsx";
+import WaitingRoom from "./Pages/WaitingRoom.tsx";
 
 function App() {
     const [isConnected, setIsConnected] = useState(false);
@@ -36,6 +37,7 @@ function App() {
                         <Route path="/home" element={<Home/>} />
                         <Route path="/create-code" element={<CreateCode/>}/>
                         <Route path="*" element={<PageNotFound homepage={"/home"}/>} />
+                        <Route path="/game/:id" element={<WaitingRoom/>}/>
                     </Routes>
 
                 )}
