@@ -72,10 +72,6 @@ const WaitingRoom = (): JSX.Element => {
                         </>
                     )}
                 </div>
-
-
-
-
             </div>
         </div>
     )

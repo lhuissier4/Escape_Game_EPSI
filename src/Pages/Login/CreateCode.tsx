@@ -55,8 +55,6 @@ const CreateAccountPage = (): JSX.Element => {
     function joinGame() {
         const value = codeRef.current?.value?.trim(); // retire les espaces
 
-        console.log("codeRef.current?.value =", value);
-
         // Vérifie si la valeur est un entier
         if (value && /^\d+$/.test(value)) {
             setIsValidCode(true);
