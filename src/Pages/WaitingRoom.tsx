@@ -15,7 +15,7 @@ const WaitingRoom = (): JSX.Element => {
     useEffect(() => {
         // Cette partie ne s'exécute qu'une seule fois, au montage du composant
         setIsLoading(true)
-        fetch("/api/verify-validity-of-code?gamecode=" + id, {
+        fetch("/api/games/join-game?gamecode=" + id, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -26,6 +26,7 @@ const WaitingRoom = (): JSX.Element => {
                     throw new Error(`Erreur HTTP : ${response.status}`);
                 }
                 const result = await response.json();
+                console.log(result);
                 setApiData(result);
                 setApiError(null)
             })

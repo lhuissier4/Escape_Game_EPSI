@@ -17,7 +17,7 @@ const CreateAccountPage = (): JSX.Element => {
     function generateCode() {
         setIsLoading(true);
 
-        fetch("/api/generate-code", {
+        fetch("/api/games/generate-code", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",

@@ -36,7 +36,7 @@ function Login(): JSX.Element {
         console.log("jsondatas", JSON.stringify(jsondatas));
 
         setIsLoading(true);
-        fetch("api/login", {
+        fetch("/api/users/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

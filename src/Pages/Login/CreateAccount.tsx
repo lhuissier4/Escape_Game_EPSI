@@ -54,7 +54,7 @@ const CreateAccountPage = (): JSX.Element => {
             }
             setIsLoading(true);
             try {
-                const res = await fetch("/api/create-account", {
+                const res = await fetch("/api/users/create-account", {
                     method: "POST",
                     body: formData,
                 });
