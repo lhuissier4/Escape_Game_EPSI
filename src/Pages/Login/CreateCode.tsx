@@ -5,7 +5,7 @@ import {redirect, useNavigate} from "react-router-dom";
 
 const CreateAccountPage = (): JSX.Element => {
     const codeRef = useRef<HTMLInputElement>(null);
-    const [apiDatas, setApiDatas] = useState<apiDatasFetched[] | null>(null);
+    const [apiDatas, setApiDatas] = useState<null>(null);
     const [isLoading, setIsLoading] = useState(false);
     const [serverError, setServerError] = useState(null);
     function generateCode() {
@@ -94,7 +94,7 @@ const CreateAccountPage = (): JSX.Element => {
                         <DivSelectionWithEnter onEnter={joinGame}>
                             <label htmlFor="codeNumber">Entrer un code :
                                 <input name="codeNumber" ref={codeRef} type="number" placeholder="Ex: 265899"/>
-                                <button onClick={joinGame}>Créer une partie</button>
+                                <button onClick={joinGame}>Rejoindre une partie</button>
                             </label>
                         </DivSelectionWithEnter>
                     </div>
