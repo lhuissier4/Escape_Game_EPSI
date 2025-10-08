@@ -72,6 +72,20 @@ def join_game(payload:ExistingGame):
 def generate_game():
     return JSONResponse({"gamecode": random.randint(100000, 999999)})
 
+@app.get("/verify-validity-of-code")
+def verify_code(gamecode:str ):
+    if (gamecode != ""):
+        return {"status": "ok"}
+        raise HTTPException(
+                status_code=400,
+                detail=f"Veillez entrer un code valide"
+            )
+    else:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Veillez entrer un code valide"
+        )
+
 if __name__ == "__main__":
     # # Remplacez "main:app" si votre module/app a un autre nom
     uvicorn.run(
