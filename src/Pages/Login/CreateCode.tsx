@@ -8,6 +8,7 @@ interface apiDatasFetched {
 }
 const CreateAccountPage = (): JSX.Element => {
     const codeRef = useRef<HTMLInputElement>(null);
+
     const [apiDatas, setApiDatas] = useState<apiDatasFetched[]>(null);
     const [isLoading, setIsLoading] = useState(false);
     const [serverError, setServerError] = useState(null);
@@ -34,7 +35,7 @@ const CreateAccountPage = (): JSX.Element => {
                 }
                 setApiDatas(data);
                 setServerError(null);
-                navigate("/game/"+data.gamecode);
+                navigate("/game/environment/"+data.gamecode);
             })
             .catch((error) => {
                 console.error("Erreur fetch:", error);
@@ -58,7 +59,7 @@ const CreateAccountPage = (): JSX.Element => {
         // Vérifie si la valeur est un entier
         if (value && /^\d+$/.test(value)) {
             setIsValidCode(true);
-            navigate("/game/"+value);
+            navigate("/game/environment/"+value);
         } else {
             setIsValidCode(false);
         }

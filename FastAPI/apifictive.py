@@ -79,7 +79,7 @@ def verify_code(gamecode:str ):
             return {"status": "ok"}
         raise HTTPException(
                 status_code=400,
-                detail=f"Veillez entrer un code valide"
+                detail=f"Ceci est le cas d'erreur de test'"
             )
     else:
         raise HTTPException(

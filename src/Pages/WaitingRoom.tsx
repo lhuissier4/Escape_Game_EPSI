@@ -3,8 +3,11 @@ import {useNavigate, useParams} from "react-router-dom";
 
 const WaitingRoom = (): JSX.Element => {
     let { id } = useParams()
+    /* *** à récupérer de l'api *** */
+    let game_theme = "environnement"
     let user1 = "bob2"
     let user2 = "dupuis3"
+    /* ********************** */
     const [apiData, setApiData] = useState<any>(null);
     const [apiError, setApiError] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -37,6 +40,9 @@ const WaitingRoom = (): JSX.Element => {
     function PrewiousPage () {
         navigate("/create-code")
     }
+    function LaunchGame(){
+        navigate("/game/environment/"+id+"/play")
+    }
     return (
         <div className="defaultPage">
             <div className="sizedPage">
@@ -56,11 +62,11 @@ const WaitingRoom = (): JSX.Element => {
                         <>
                             <div className="title">
                                 <h1>Salle d'attente</h1>
-                                <h2>Vous avez le code {id}</h2>
+                                <h2>Le code de jeu est {id}</h2>
                             </div>
                             <p>Utilisateur 1 : {user1}</p>
                             <p>Utilisateur 2 : {user2}</p>
-                            <button className="button-style">Démarrer la partie</button>
+                            <button onClick={LaunchGame} className="button-style">Démarrer la partie</button>
                         </>
                     ) : (
                         <>

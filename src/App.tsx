@@ -10,6 +10,8 @@ import CreateAccount from "./Pages/Login/CreateAccount.tsx";
 import Home from "./Pages/Home.tsx";
 import CreateCode from "./Pages/Login/CreateCode.tsx";
 import WaitingRoom from "./Pages/WaitingRoom.tsx";
+import MainScene from "./Pages/Game/MainScene.tsx";
+import Mystery from "./Pages/Game/Mystery.tsx";
 
 function App() {
     const [isConnected, setIsConnected] = useState(false);
@@ -37,7 +39,9 @@ function App() {
                         <Route path="/home" element={<Home/>} />
                         <Route path="/create-code" element={<CreateCode/>}/>
                         <Route path="*" element={<PageNotFound homepage={"/home"}/>} />
-                        <Route path="/game/:id" element={<WaitingRoom/>}/>
+                        <Route path="/game/environment/:id" element={<WaitingRoom/>}/>
+                        <Route path="/game/environment/:id/play" element={<MainScene/>}/>
+                        <Route path="/game/environment/:id/play/mystery/:id_mystery" element={<Mystery/>}/>
                     </Routes>
 
                 )}
