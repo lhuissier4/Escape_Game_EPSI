@@ -2,9 +2,8 @@ import {type JSX, useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 
 const WaitingRoom = (): JSX.Element => {
-    let { id } = useParams()
+    const { id } = useParams()
     /* *** à récupérer de l'api *** */
-    let game_theme = "environnement"
     let user1 = "bob2"
     let user2 = "dupuis3"
     /* ********************** */
@@ -13,31 +12,39 @@ const WaitingRoom = (): JSX.Element => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const navigate = useNavigate();
     useEffect(() => {
-        // Cette partie ne s'exécute qu'une seule fois, au montage du composant
-        setIsLoading(true)
-        fetch("/api/games/join-game?gamecode=" + id, {
-            method: "GET",
+        // Exécuté une seule fois au montage du composant
+        setIsLoading(true);
+
+        // Corps JSON attendu par le backend
+        const payload = { gamecode: id };
+
+        fetch("/api/games/join-game", {
+            method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
+            body: JSON.stringify(payload),
         })
             .then(async (response) => {
                 if (!response.ok) {
-                    throw new Error(`Erreur HTTP : ${response.status}`);
+                    // Gestion d'erreur HTTP
+                    const errData = await response.json().catch(() => ({}));
+                    throw new Error(errData.error || `Erreur HTTP : ${response.status}`);
                 }
                 const result = await response.json();
-                console.log(result);
+                console.log("Réponse join-game :", result);
                 setApiData(result);
-                setApiError(null)
+                setApiError(null);
             })
             .catch((err) => {
-                console.error(err);
+                console.error("Erreur API join-game :", err);
                 setApiError(err.message);
             })
             .finally(() => {
                 setIsLoading(false);
             });
-    }, []);
+    }, [id]);
+
     function PrewiousPage () {
         navigate("/create-code")
     }

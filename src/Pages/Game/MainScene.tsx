@@ -1,8 +1,9 @@
 import type { JSX } from "react";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 
 function MainScene(): JSX.Element {
     const navigate = useNavigate();
+    const { id } = useParams<{ id:string, }>();
     return (
         <div className="scene-container">
             {/* Image de fond plein écran */}
@@ -17,28 +18,28 @@ function MainScene(): JSX.Element {
                 src="/gaz.jpg"
                 alt="Zone 1"
                 className="clickable-image img1"
-                onClick={() => navigate("/game/environment/:id/play/mystery/1")}
+                onClick={() => navigate("/game/environment/"+id+"/play/mystery/1")}
             />
 
             <img
                 src="/pollution.jpg"
                 alt="Zone 2"
                 className="clickable-image img2"
-                onClick={() => navigate("/game/environment/:id/play/mystery/2")}
+                onClick={() => navigate("/game/environment/"+id+"/play/mystery/2")}
             />
 
             <img
                 src="/transports.jpg"
                 alt="Zone 3"
                 className="clickable-image img3"
-                onClick={() => navigate("/game/environment/:id/play/mystery/3")}
+                onClick={() => navigate("/game/environment/"+id+"/play/mystery/3")}
             />
 
             <img
                 src="/recyclages.png"
                 alt="Zone 4"
                 className="clickable-image img4"
-                onClick={() => navigate("/game/environment/:id/play/mystery/4")}
+                onClick={() => navigate("/game/environment/"+id+"/play/mystery/4")}
             />
 
             {/* Texte superposé */}

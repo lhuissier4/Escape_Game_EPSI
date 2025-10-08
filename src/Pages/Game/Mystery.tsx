@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import { useState } from "react";
 import type { JSX } from "react";
 
@@ -11,11 +11,14 @@ interface Question {
 }
 
 function Mystery(): JSX.Element {
-    const { id_mystery } = useParams<{ id_mystery: string }>();
+    const { id, id_mystery } = useParams<{ id:string, id_mystery: string }>();
     const [selected, setSelected] = useState<string>("");
     const [score, setScore] = useState<number>(50); // Score initial à 50
     const [isFinished, setIsFinished] = useState<boolean>(false);
-
+    const navigate = useNavigate();
+    function PrewiousPage () {
+        navigate("/game/environment/"+id+"/play")
+    }
     // Liste des énigmes
     const questions: Record<string, Question> = {
         "1": {
@@ -79,7 +82,7 @@ function Mystery(): JSX.Element {
 
             try {
                 // Envoi du score au serveur
-                const response = await fetch("/api/", {
+                const response = await fetch("/api/scores", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -133,7 +136,7 @@ function Mystery(): JSX.Element {
                 ))}
             </div>
 
-            <button className="validate-button" onClick={handleSubmit} disabled={isFinished}>
+            <button className="validate-button" onClick={isFinished ? PrewiousPage : handleSubmit} >
                 {isFinished ? "Terminé" : "Valider"}
             </button>
         </div>
