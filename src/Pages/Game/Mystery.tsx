@@ -79,7 +79,8 @@ function Mystery(): JSX.Element {
         if (isCorrect) {
             console.log("Bonne réponse !");
             setIsFinished(true);
-
+            const solvedKey = `mystery_solved_${id_mystery}`;
+            localStorage.setItem(solvedKey, "true");
             try {
                 // Envoi du score au serveur
                 const response = await fetch("/api/scores", {
