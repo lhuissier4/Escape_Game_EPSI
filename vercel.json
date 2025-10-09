@@ -3,6 +3,10 @@
     {
       "source": "/api/(.*)",
       "destination": "https://escapegameepsiapi-lhuissiers-projects.vercel.app/api/$1"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
