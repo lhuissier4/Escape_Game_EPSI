@@ -1,8 +1,0 @@
-{
-  "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "https://escapegameepsiapi-lhuissiers-projects.vercel.app/api/$1"
-    }
-  ]
-}
