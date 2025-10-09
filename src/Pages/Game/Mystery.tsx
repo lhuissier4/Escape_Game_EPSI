@@ -81,7 +81,7 @@ function Mystery(): JSX.Element {
             const solvedKey = `mystery_solved_${id_mystery}`;
             localStorage.setItem(solvedKey, "true");
             try {
-                const response = await fetch("https://escapegameepsiapi-lhuissiers-projects.vercel.app/api/scores", {
+                const response = await fetch("/api/scores", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",

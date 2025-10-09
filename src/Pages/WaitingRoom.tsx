@@ -19,7 +19,7 @@ const WaitingRoom = (): JSX.Element => {
         // Corps JSON attendu par le backend
         const payload = { gamecode: id };
         const token = Cookies.get("token");
-        fetch("https://escapegameepsiapi-lhuissiers-projects.vercel.app/api/games/join-game", {
+        fetch("/api/games/join-game", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
