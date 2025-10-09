@@ -96,9 +96,7 @@ const CreateAccountPage = (): JSX.Element => {
                                 <label htmlFor="email">Email :
                                     <input name="email" ref={emailRef} type="text" placeholder="Ex: john.doe@example.com"/>
                                 </label>
-                                <label htmlFor="image">Ajouter une photo (facultatif) :
-                                    <input type="file" accept="image/*" onChange={handleFileChange} />
-                                </label>
+
 
 
                                 <label htmlFor="password1">Mot de passe :
