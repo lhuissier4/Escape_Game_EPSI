@@ -1,21 +1,18 @@
-import {type JSX, useEffect, useRef, useState} from "react";
+import { type JSX, useEffect, useRef, useState } from 'react';
+import type {  } from 'react';
 import DivSelectionWithEnter from "../components/DivSelectionWithEnter.tsx";
-import {Button} from "react-bootstrap";
-import {redirect, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
-interface apiDatasFetched {
-    gamecode: number;
-}
+
+
+
 const CreateAccountPage = (): JSX.Element => {
     const codeRef = useRef<HTMLInputElement>(null);
 
-    const [apiDatas, setApiDatas] = useState<apiDatasFetched[]>(null);
-    const [isLoading, setIsLoading] = useState(false);
-    const [serverError, setServerError] = useState(null);
+
     const [is_valid_code, setIsValidCode] = useState(true);
     const navigate = useNavigate();
     function generateCode() {
-        setIsLoading(true);
 
         fetch("/api/games/generate-code", {
             method: "GET",
@@ -33,17 +30,11 @@ const CreateAccountPage = (): JSX.Element => {
                 if (!data) {
                     throw new Error("Les données reçues sont vides");
                 }
-                setApiDatas(data);
-                setServerError(null);
                 navigate("/game/environment/"+data.gamecode);
             })
             .catch((error) => {
                 console.error("Erreur fetch:", error);
-                setServerError(error.message || "Erreur inconnue");
             })
-            .finally(() => {
-                setIsLoading(false);
-            });
     }
 
     useEffect(() => {

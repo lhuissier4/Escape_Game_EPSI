@@ -1,5 +1,6 @@
 import {useNavigate, useParams} from "react-router-dom";
-import { useState } from "react";
+import { useState } from 'react';
+import type {  } from 'react';
 import type { JSX } from "react";
 // Structure d'une énigme
 interface Question {

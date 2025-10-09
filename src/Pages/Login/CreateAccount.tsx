@@ -1,7 +1,9 @@
-import {type JSX, useEffect, useRef, useState} from "react";
+import { type JSX, useRef, useState } from 'react';
+import type {  } from 'react';
 import DivSelectionWithEnter from "../components/DivSelectionWithEnter.tsx";
-import {Button} from "react-bootstrap";
-import {redirect, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
+
+
 
 const CreateAccountPage = (): JSX.Element => {
     const usernameRef = useRef<HTMLInputElement>(null);
@@ -10,19 +12,13 @@ const CreateAccountPage = (): JSX.Element => {
     const nameRef = useRef<HTMLInputElement>(null);
     const firstnameRef = useRef<HTMLInputElement>(null);
     const emailRef = useRef<HTMLInputElement>(null);
-    const [file, setFile] = useState<File | null>(null);
     const [visible1, setVisible1] = useState(false);
     const [visible2, setVisible2] = useState(false);
     const [passwordsMatch,setPasswordsMatch] = useState(true);
-    const [apiDatas, setApiDatas] = useState(null);
-    const [isLoading, setIsLoading] = useState(false);
-    const [serverError, setServerError] = useState(null);
+    const [serverError, setServerError] = useState<string | null>(null);
     const navigate = useNavigate();
 
-    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const selectedFile = e.target.files?.[0] || null;
-        setFile(selectedFile);
-    };
+
     const createAccount = async () => {
 
         if (!passwordsMatch){
@@ -46,13 +42,7 @@ const CreateAccountPage = (): JSX.Element => {
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             formData.append("email", emailRef.current?.value );
-            let img = false
-            if (file) {
 
-                formData.append("picture", file);
-                img = true;
-            }
-            setIsLoading(true);
             try {
                 const res = await fetch("/api/users/create-account", {
                     method: "POST",
@@ -63,15 +53,13 @@ const CreateAccountPage = (): JSX.Element => {
                     throw new Error(`Erreur ${res.status}: ${text}`);
                 }
 
-                const data = await res.json();
-                alert(`Création de compte réussi : ${img ? "image sélectionnée" : "aucune image"}`);
+                alert(`Création de compte réussi"}`);
                 navigate("/login");
             } catch (err: any) {
-                alert(err.message);
-            } finally
-            {
-                setIsLoading(false);
+                setServerError(err.message)
+                alert(err.message)
             }
+
         }
 
     };

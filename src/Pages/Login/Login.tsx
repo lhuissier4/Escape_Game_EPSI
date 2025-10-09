@@ -1,4 +1,5 @@
-import {type JSX, useRef, useState} from "react";
+import { type JSX, useRef, useState } from 'react';
+import type {  } from 'react';
 import Cookies from "js-cookie";
 import DivSelectionWithEnter from "../components/DivSelectionWithEnter.tsx";
 import {useNavigate } from "react-router-dom";
@@ -17,9 +18,9 @@ interface apiDatasFetched {
 function Login(): JSX.Element {
     const usernameRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
-    const [apiDatas, setApiDatas] = useState<apiDatasFetched[] | null>(null);
-    const [isLoading, setIsLoading] = useState(false);
-    const [serverError, setServerError] = useState(null);
+    const [apiDatas, setApiDatas] = useState<apiDatasFetched | null | null>(null);
+
+    const [serverError, setServerError] = useState<string | null>(null);
     const [visible, setVisible] = useState(false);
 
     const navigate = useNavigate();
@@ -35,7 +36,7 @@ function Login(): JSX.Element {
         }
         console.log("jsondatas", JSON.stringify(jsondatas));
 
-        setIsLoading(true);
+
         fetch("/api/users/login", {
             method: "POST",
             headers: {
@@ -68,11 +69,11 @@ function Login(): JSX.Element {
                 setServerError("Erreur "+error.status+" : "+error.message);
                 console.log("error "+error.status+" : "+error.message);
             })
-            .finally(() => {
-                setIsLoading(false);
-            });
     }
 
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
             event.preventDefault(); // Empêche un comportement par défaut éventuel

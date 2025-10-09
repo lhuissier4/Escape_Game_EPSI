@@ -1,4 +1,5 @@
-import {type JSX, useEffect, useState} from "react";
+import { type JSX, useEffect, useState } from 'react';
+import type {  } from 'react';
 import {useNavigate, useParams} from "react-router-dom";
 import Cookies from "js-cookie";
 
@@ -8,8 +9,7 @@ const WaitingRoom = (): JSX.Element => {
     let user1 = "bob2"
     let user2 = "dupuis3"
     /* ********************** */
-    const [apiData, setApiData] = useState<any>(null);
-    const [apiError, setApiError] = useState<string | null>(null);
+    const [apiError, setApiError] = useState<string | null | null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const navigate = useNavigate();
     useEffect(() => {
@@ -36,7 +36,7 @@ const WaitingRoom = (): JSX.Element => {
                 const result = await response.json();
                 console.log("Réponse join-game :", result);
                 localStorage.setItem("session_id", result.session_id);
-                setApiData(result);
+
                 setApiError(null);
             })
             .catch((err) => {

@@ -1,5 +1,6 @@
 import {useLocation} from "react-router-dom";
-import {JSX} from "react";
+import {  } from 'react';
+import type { JSX } from 'react';
 
 interface Props {
     homepage:string;

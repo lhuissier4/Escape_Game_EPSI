@@ -1,4 +1,6 @@
-import React, {useRef, useEffect, useState, Children, cloneElement, ReactNode, ReactElement, HTMLAttributes} from 'react';
+import React, {useRef, useEffect, useState, Children, cloneElement} from 'react';
+import type {  } from 'react';
+import type { ReactNode, ReactElement, HTMLAttributes } from 'react';
 
 interface Props {
     children: ReactNode;
@@ -13,7 +15,7 @@ interface Props {
  */
 function DivSelectionWithEnter(props:Props) {
     const containerRef = useRef<HTMLDivElement>(null);
-    const [activeIndex, setActiveIndex] = useState<number | null>(null);
+    const [activeIndex, setActiveIndex] = useState<number | null | null>(null);
 
     const handleKeyDown = (event: KeyboardEvent) => {
         if (event.key === 'Enter' && activeIndex !== null) {

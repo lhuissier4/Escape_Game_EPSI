@@ -1,4 +1,5 @@
-import { type JSX, useEffect, useState } from "react";
+import { type JSX, useEffect, useState } from 'react';
+import type {  } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
 
 function MainScene(): JSX.Element {
